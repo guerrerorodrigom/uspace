@@ -67,13 +67,6 @@ class CrewFragment : Fragment() {
         }
       }
     }
-
-    binding?.filter?.setOnCheckedChangeListener { group, checkedId ->
-      val test = checkedId
-    }
-    viewModel.crewAgency.observe(viewLifecycleOwner) {
-      val test = it
-    }
     viewModel.isLoading(true)
     viewModel.getCrew()
   }
