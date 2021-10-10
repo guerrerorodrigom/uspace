@@ -35,7 +35,25 @@
 package com.raywenderlich.android.uspace
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.raywenderlich.android.uspace.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-@HiltAndroidApp
-class SpaceApp : Application()
+class SpaceApp : Application(), HasAndroidInjector {
+
+  @Inject
+  lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+  override fun onCreate() {
+    super.onCreate()
+
+    DaggerAppComponent.builder()
+        .build().run {
+          inject(this@SpaceApp)
+        }
+  }
+
+  override fun androidInjector(): AndroidInjector<Any> = androidInjector
+}

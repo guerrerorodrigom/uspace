@@ -32,30 +32,31 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.uspace.ui
+package com.raywenderlich.android.uspace.di
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.raywenderlich.android.uspace.network.services.SpaceService
 import com.raywenderlich.android.uspace.repository.SpaceRepository
-import com.raywenderlich.android.uspace.repository.SpaceResult
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.raywenderlich.android.uspace.repository.SpaceRepositoryImpl
+import dagger.Module
+import dagger.Provides
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
-    private val repository: SpaceRepository
-) : ViewModel() {
+@Module
+class SpaceModule {
 
-  private val _dragons = MutableLiveData<SpaceResult>()
-
-  fun getDragons() {
-    viewModelScope.launch {
-      repository.getDragons().collect {
-        _dragons.value = it
-      }
-    }
+  @Singleton
+  @Provides
+  fun provideSpaceService(): SpaceService {
+    return Retrofit.Builder()
+        .baseUrl("https://api.spacexdata.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(SpaceService::class.java)
   }
+
+  @Singleton
+  @Provides
+  fun provideSpaceRepository(service: SpaceService): SpaceRepository = SpaceRepositoryImpl(service)
 }

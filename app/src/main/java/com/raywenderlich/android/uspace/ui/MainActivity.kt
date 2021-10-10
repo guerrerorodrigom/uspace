@@ -35,28 +35,38 @@
 package com.raywenderlich.android.uspace.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import com.raywenderlich.android.uspace.R
-import dagger.hilt.android.AndroidEntryPoint
+import com.raywenderlich.android.uspace.databinding.ActivityMainBinding
+import com.raywenderlich.android.uspace.ui.adapters.TabsAdapter
 
 /**
  * Main Screen
  */
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-  private val viewModel: MainViewModel by viewModels()
+  private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     // Switch to AppTheme for displaying the activity
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     // Your code
-    viewModel.getDragons()
+    val adapter = TabsAdapter(this)
+    binding.pager.adapter = adapter
+
+    TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
+      when (position) {
+        0 -> tab.text = getString(R.string.rockets_tab)
+        1 -> tab.text = getString(R.string.crew_tab)
+        2 -> tab.text = getString(R.string.capsules_tab)
+      }
+    }.attach()
 
   }
 }
