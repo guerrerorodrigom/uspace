@@ -3,7 +3,7 @@
   <string name="rockets_tab">Rockets</string>
   <string name="crew_tab">Crew</string>
   <string name="capsules_tab">Capsules</string>
-    <string name="error_loading_rockets">Error loading rockets.</string>
+  <string name="error_loading_data">Error loading data.</string>
   <string name="try_again">Try Again</string>
   <string name="rocket_weight_kg">%s kg</string>
   <string name="rocket_height_m">%.2f meters</string>

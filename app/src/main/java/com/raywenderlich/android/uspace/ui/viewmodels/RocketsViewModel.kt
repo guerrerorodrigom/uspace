@@ -40,11 +40,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.uspace.repository.SpaceRepository
 import com.raywenderlich.android.uspace.repository.SpaceResult
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RocketsViewModel @Inject constructor(
@@ -57,9 +54,7 @@ class RocketsViewModel @Inject constructor(
   fun getRockets() {
     viewModelScope.launch {
       repository.getRockets().collect {
-        withContext(Dispatchers.Main) {
-          _rockets.value = it
-        }
+        _rockets.value = it
       }
     }
   }

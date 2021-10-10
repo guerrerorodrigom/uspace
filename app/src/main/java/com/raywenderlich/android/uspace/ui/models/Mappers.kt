@@ -34,10 +34,7 @@
 
 package com.raywenderlich.android.uspace.ui.models
 
-import com.raywenderlich.android.uspace.network.dto.DragonDTO
-import com.raywenderlich.android.uspace.network.dto.MeasurementDTO
-import com.raywenderlich.android.uspace.network.dto.RocketDTO
-import com.raywenderlich.android.uspace.network.dto.WeightDTO
+import com.raywenderlich.android.uspace.network.dto.*
 
 fun WeightDTO.toWeight() = Weight(kg, lb)
 
@@ -53,3 +50,5 @@ fun DragonDTO.toDragon() = Dragon(
     name, type, active, images, firstFlightDate, trunkHeight.toMeasurement(), diameter
     .toMeasurement(), externalLink, description
 )
+
+fun CrewDTO.toCrew() = Crew(name, agency, image, externalLink, status)

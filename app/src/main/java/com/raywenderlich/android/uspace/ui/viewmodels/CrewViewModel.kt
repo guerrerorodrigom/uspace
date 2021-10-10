@@ -32,46 +32,30 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.uspace.repository
+package com.raywenderlich.android.uspace.ui.viewmodels
 
-import com.raywenderlich.android.uspace.network.services.SpaceService
-import com.raywenderlich.android.uspace.ui.models.toCrew
-import com.raywenderlich.android.uspace.ui.models.toDragon
-import com.raywenderlich.android.uspace.ui.models.toRocket
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.raywenderlich.android.uspace.repository.SpaceRepository
+import com.raywenderlich.android.uspace.repository.SpaceResult
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SpaceRepositoryImpl(
-    private val service: SpaceService
-) : SpaceRepository {
+class CrewViewModel @Inject constructor(
+    private val repository: SpaceRepository
+) : ViewModel() {
 
-  override suspend fun getDragons(): Flow<SpaceResult> = flow {
-    val response = service.getDragons()
+  private val _crew = MutableLiveData<SpaceResult>()
+  val crew: LiveData<SpaceResult> get() = _crew
 
-    if (response.isSuccessful) {
-      emit(SpaceResult.DragonResult(response.body()?.map { it.toDragon() } ?: emptyList()))
-    } else {
-      emit(SpaceResult.Error)
-    }
-  }
-
-  override suspend fun getRockets(): Flow<SpaceResult> = flow {
-    val response = service.getRockets()
-
-    if (response.isSuccessful) {
-      emit(SpaceResult.RocketResult(response.body()?.map { it.toRocket() } ?: emptyList()))
-    } else {
-      emit(SpaceResult.Error)
-    }
-  }
-
-  override suspend fun getCrews(): Flow<SpaceResult> = flow {
-    val response = service.getCrews()
-
-    if (response.isSuccessful) {
-      emit(SpaceResult.CrewResult(response.body()?.map { it.toCrew() } ?: emptyList()))
-    } else {
-      emit(SpaceResult.Error)
+  fun getCrew() {
+    viewModelScope.launch {
+      repository.getCrews().collect {
+        _crew.value = it
+      }
     }
   }
 }

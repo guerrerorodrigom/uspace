@@ -10,27 +10,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.android.uspace.R
-import com.raywenderlich.android.uspace.databinding.FragmentCrewBinding
+import com.raywenderlich.android.uspace.databinding.FragmentDragonsBinding
 import com.raywenderlich.android.uspace.repository.SpaceResult
-import com.raywenderlich.android.uspace.ui.adapters.CrewAdapter
-import com.raywenderlich.android.uspace.ui.viewmodels.CrewViewModel
+import com.raywenderlich.android.uspace.ui.adapters.DragonAdapter
+import com.raywenderlich.android.uspace.ui.viewmodels.DragonViewModel
 import com.raywenderlich.android.uspace.utils.showSnackbar
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class CrewFragment : Fragment() {
+class DragonsFragment : Fragment() {
 
   companion object {
-    fun createInstance() = CrewFragment()
+    fun createInstance() = DragonsFragment()
   }
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
 
   @Inject
-  lateinit var adapter: CrewAdapter
-  private val viewModel: CrewViewModel by viewModels { viewModelFactory }
-  private var binding: FragmentCrewBinding? = null
+  lateinit var adapter: DragonAdapter
+  private val viewModel: DragonViewModel by viewModels { viewModelFactory }
+  private var binding: FragmentDragonsBinding? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidSupportInjection.inject(this)
@@ -41,7 +41,7 @@ class CrewFragment : Fragment() {
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    binding = FragmentCrewBinding.inflate(inflater)
+    binding = FragmentDragonsBinding.inflate(inflater)
     return binding?.root
   }
 
@@ -49,25 +49,25 @@ class CrewFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding?.apply {
-      crewList.layoutManager = LinearLayoutManager(requireContext())
-      crewList.adapter = adapter
-      crewList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+      dragonsList.layoutManager = LinearLayoutManager(requireContext())
+      dragonsList.adapter = adapter
+      dragonsList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
     }
 
-    viewModel.crew.observe(viewLifecycleOwner) { result ->
+    viewModel.dragons.observe(viewLifecycleOwner) { result ->
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
           binding?.loading = false
-          viewModel.getCrew()
+          viewModel.getDragons()
         }
-        is SpaceResult.CrewResult -> {
+        is SpaceResult.DragonResult -> {
           binding?.loading = false
-          adapter.addItems(result.crew)
+          adapter.addItems(result.dragons)
         }
       }
     }
     binding?.loading = true
-    viewModel.getCrew()
+    viewModel.getDragons()
   }
 
   override fun onDestroyView() {

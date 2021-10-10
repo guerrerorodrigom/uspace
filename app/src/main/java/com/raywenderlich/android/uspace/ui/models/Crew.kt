@@ -1,0 +1,9 @@
+package com.raywenderlich.android.uspace.ui.models
+
+data class Crew(
+    val name: String,
+    val agency: String,
+    val image: String,
+    val externalLink: String,
+    val status: String
+)

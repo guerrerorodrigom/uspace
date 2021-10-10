@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.uspace.R
 import com.raywenderlich.android.uspace.databinding.FragmentRocketsBinding
 import com.raywenderlich.android.uspace.repository.SpaceResult
@@ -57,7 +56,7 @@ class RocketsFragment : Fragment() {
 
     viewModel.rockets.observe(viewLifecycleOwner) { result ->
       when (result) {
-        SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_rockets, R.string.try_again) {
+        SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
           binding?.loading = false
           viewModel.getRockets()
         }

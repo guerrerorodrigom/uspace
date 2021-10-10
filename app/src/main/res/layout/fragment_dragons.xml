@@ -13,10 +13,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.RocketsFragment">
+        tools:context=".ui.fragments.DragonsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/crew_list"
+            android:id="@+id/dragons_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_crew" />

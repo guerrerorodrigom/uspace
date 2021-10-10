@@ -1,6 +1,6 @@
 package com.raywenderlich.android.uspace.di
 
-import com.raywenderlich.android.uspace.ui.fragments.CapsulesFragment
+import com.raywenderlich.android.uspace.ui.fragments.DragonsFragment
 import com.raywenderlich.android.uspace.ui.fragments.CrewFragment
 import com.raywenderlich.android.uspace.ui.fragments.RocketsFragment
 import dagger.Module
@@ -16,5 +16,5 @@ abstract class AndroidModule {
   abstract fun crewFragment(): CrewFragment
 
   @ContributesAndroidInjector
-  abstract fun capsulesFragment(): CapsulesFragment
+  abstract fun dragonsFragment(): DragonsFragment
 }

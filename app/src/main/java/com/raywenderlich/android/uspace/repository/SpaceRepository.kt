@@ -41,4 +41,6 @@ interface SpaceRepository {
   suspend fun getDragons(): Flow<SpaceResult>
 
   suspend fun getRockets(): Flow<SpaceResult>
+
+  suspend fun getCrews(): Flow<SpaceResult>
 }
