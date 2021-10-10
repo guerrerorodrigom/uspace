@@ -31,6 +31,7 @@ class CrewAdapter @Inject constructor(): RecyclerView.Adapter<CrewAdapter.CrewVi
   override fun getItemCount() = crew.size
 
   fun addItems(crew: List<Crew>) {
+    this.crew.clear()
     this.crew.addAll(crew)
     notifyDataSetChanged()
   }

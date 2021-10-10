@@ -41,6 +41,7 @@ import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.uspace.R
 import com.raywenderlich.android.uspace.repository.SpaceRepository
 import com.raywenderlich.android.uspace.repository.SpaceResult
+import com.raywenderlich.android.uspace.ui.models.Crew
 import com.raywenderlich.android.uspace.ui.models.CrewAgency
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -50,18 +51,22 @@ class CrewViewModel @Inject constructor(
     private val repository: SpaceRepository
 ) : ViewModel() {
 
-  private val _crew = MutableLiveData<SpaceResult>()
-  val crew: LiveData<SpaceResult> get() = _crew
+  private val crew = mutableListOf<Crew>()
+  private val _result = MutableLiveData<SpaceResult>()
+  val result: LiveData<SpaceResult> get() = _result
 
   private val _isLoading = MutableLiveData<Boolean>()
   val isLoading: LiveData<Boolean> get() = _isLoading
 
-  val crewAgency: MutableLiveData<CrewAgency> = MutableLiveData(CrewAgency.NASA)
+  val crewAgency: MutableLiveData<CrewAgency> = MutableLiveData()
 
   fun getCrew() {
     viewModelScope.launch {
       repository.getCrews().collect {
-        _crew.value = it
+        if (it is SpaceResult.CrewResult) {
+          crew.addAll(it.crew)
+        }
+        _result.value = it
       }
     }
   }
@@ -69,4 +74,6 @@ class CrewViewModel @Inject constructor(
   fun isLoading(isLoading: Boolean) {
     _isLoading.value = isLoading
   }
+
+  fun getFilteredCrew() = crew.filter { it.agency.lowercase() == crewAgency.value?.agency }
 }

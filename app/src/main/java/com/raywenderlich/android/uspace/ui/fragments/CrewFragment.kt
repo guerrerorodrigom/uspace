@@ -55,7 +55,9 @@ class CrewFragment : Fragment() {
     }
 
     binding?.lifecycleOwner = viewLifecycleOwner
-    viewModel.crew.observe(viewLifecycleOwner) { result ->
+    binding?.viewModel = viewModel
+
+    viewModel.result.observe(viewLifecycleOwner) { result ->
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
           viewModel.isLoading(false)
@@ -66,6 +68,10 @@ class CrewFragment : Fragment() {
           adapter.addItems(result.crew)
         }
       }
+    }
+
+    viewModel.crewAgency.observe(viewLifecycleOwner) {
+      adapter.addItems(viewModel.getFilteredCrew())
     }
     viewModel.isLoading(true)
     viewModel.getCrew()
