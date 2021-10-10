@@ -54,19 +54,27 @@ class CrewFragment : Fragment() {
       crewList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
     }
 
+    binding?.lifecycleOwner = viewLifecycleOwner
     viewModel.crew.observe(viewLifecycleOwner) { result ->
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          binding?.loading = false
+          viewModel.isLoading(false)
           viewModel.getCrew()
         }
         is SpaceResult.CrewResult -> {
-          binding?.loading = false
+          viewModel.isLoading(false)
           adapter.addItems(result.crew)
         }
       }
     }
-    binding?.loading = true
+
+    binding?.filter?.setOnCheckedChangeListener { group, checkedId ->
+      val test = checkedId
+    }
+    viewModel.crewAgency.observe(viewLifecycleOwner) {
+      val test = it
+    }
+    viewModel.isLoading(true)
     viewModel.getCrew()
   }
 

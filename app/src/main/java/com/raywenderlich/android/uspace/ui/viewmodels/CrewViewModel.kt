@@ -38,8 +38,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.raywenderlich.android.uspace.R
 import com.raywenderlich.android.uspace.repository.SpaceRepository
 import com.raywenderlich.android.uspace.repository.SpaceResult
+import com.raywenderlich.android.uspace.ui.models.CrewAgency
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -51,11 +53,20 @@ class CrewViewModel @Inject constructor(
   private val _crew = MutableLiveData<SpaceResult>()
   val crew: LiveData<SpaceResult> get() = _crew
 
+  private val _isLoading = MutableLiveData<Boolean>()
+  val isLoading: LiveData<Boolean> get() = _isLoading
+
+  val crewAgency: MutableLiveData<CrewAgency> = MutableLiveData(CrewAgency.NASA)
+
   fun getCrew() {
     viewModelScope.launch {
       repository.getCrews().collect {
         _crew.value = it
       }
     }
+  }
+
+  fun isLoading(isLoading: Boolean) {
+    _isLoading.value = isLoading
   }
 }

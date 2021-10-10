@@ -10,4 +10,8 @@
   <string name="title_appearance">title</string>
   <string name="height_appearance">height</string>
   <string name="weight_appearance">weight</string>
+  <string name="nasa">NASA</string>
+  <string name="spacex">SpaceX</string>
+  <string name="jaxa">JAXA</string>
+  <string name="esa">ESA</string>
 </resources>
