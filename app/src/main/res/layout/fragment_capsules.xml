@@ -13,13 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.DragonsFragment">
+        tools:context=".ui.fragments.CapsulesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dragons_list"
+            android:id="@+id/capsules_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_dragon" />
+            tools:listitem="@layout/item_capsule" />
 
         <ProgressBar
             android:id="@+id/progress"

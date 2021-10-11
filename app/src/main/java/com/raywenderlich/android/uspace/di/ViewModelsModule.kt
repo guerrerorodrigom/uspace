@@ -2,6 +2,7 @@ package com.raywenderlich.android.uspace.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.raywenderlich.android.uspace.ui.viewmodels.CapsuleViewModel
 import com.raywenderlich.android.uspace.ui.viewmodels.CrewViewModel
 import com.raywenderlich.android.uspace.ui.viewmodels.DragonViewModel
 import com.raywenderlich.android.uspace.ui.viewmodels.RocketsViewModel
@@ -26,6 +27,11 @@ abstract class ViewModelsModule {
   @IntoMap
   @ViewModelKey(DragonViewModel::class)
   abstract fun bindDragonViewModel(dragonViewModel: DragonViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(CapsuleViewModel::class)
+  abstract fun bindCapsuleViewModel(capsuleViewModel: CapsuleViewModel): ViewModel
 
   @Binds
   abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

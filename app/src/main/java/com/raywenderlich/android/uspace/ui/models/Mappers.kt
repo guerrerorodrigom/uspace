@@ -52,3 +52,5 @@ fun DragonDTO.toDragon() = Dragon(
 )
 
 fun CrewDTO.toCrew() = Crew(name, agency, image, externalLink, status)
+
+fun CapsuleDTO.toCapsule() = Capsule(serial, status, type)

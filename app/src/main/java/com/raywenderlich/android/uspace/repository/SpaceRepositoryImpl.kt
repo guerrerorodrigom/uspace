@@ -35,6 +35,7 @@
 package com.raywenderlich.android.uspace.repository
 
 import com.raywenderlich.android.uspace.network.services.SpaceService
+import com.raywenderlich.android.uspace.ui.models.toCapsule
 import com.raywenderlich.android.uspace.ui.models.toCrew
 import com.raywenderlich.android.uspace.ui.models.toDragon
 import com.raywenderlich.android.uspace.ui.models.toRocket
@@ -70,6 +71,16 @@ class SpaceRepositoryImpl(
 
     if (response.isSuccessful) {
       emit(SpaceResult.CrewResult(response.body()?.map { it.toCrew() } ?: emptyList()))
+    } else {
+      emit(SpaceResult.Error)
+    }
+  }
+
+  override suspend fun getCapsules(): Flow<SpaceResult> = flow {
+    val response = service.getCapsules()
+
+    if (response.isSuccessful) {
+      emit(SpaceResult.CapsuleResult(response.body()?.map { it.toCapsule() } ?: emptyList()))
     } else {
       emit(SpaceResult.Error)
     }

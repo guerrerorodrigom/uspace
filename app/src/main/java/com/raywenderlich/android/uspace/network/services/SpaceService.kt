@@ -34,6 +34,7 @@
 
 package com.raywenderlich.android.uspace.network.services
 
+import com.raywenderlich.android.uspace.network.dto.CapsuleDTO
 import com.raywenderlich.android.uspace.network.dto.CrewDTO
 import com.raywenderlich.android.uspace.network.dto.DragonDTO
 import com.raywenderlich.android.uspace.network.dto.RocketDTO
@@ -50,4 +51,7 @@ interface SpaceService {
 
   @GET("v4/crew")
   suspend fun getCrews(): Response<List<CrewDTO>>
+
+  @GET("v4/capsules")
+  suspend fun getCapsules(): Response<List<CapsuleDTO>>
 }

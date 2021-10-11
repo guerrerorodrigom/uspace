@@ -34,6 +34,7 @@
 
 package com.raywenderlich.android.uspace.repository
 
+import com.raywenderlich.android.uspace.ui.models.Capsule
 import com.raywenderlich.android.uspace.ui.models.Crew
 import com.raywenderlich.android.uspace.ui.models.Dragon
 import com.raywenderlich.android.uspace.ui.models.Rocket
@@ -43,4 +44,5 @@ sealed class SpaceResult {
   data class DragonResult(val dragons: List<Dragon>): SpaceResult()
   data class RocketResult(val rockets: List<Rocket>): SpaceResult()
   data class CrewResult(val crew: List<Crew>): SpaceResult()
+  data class CapsuleResult(val capsules: List<Capsule>): SpaceResult()
 }

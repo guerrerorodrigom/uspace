@@ -32,42 +32,30 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.uspace.ui
+package com.raywenderlich.android.uspace.ui.viewmodels
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.tabs.TabLayoutMediator
-import com.raywenderlich.android.uspace.R
-import com.raywenderlich.android.uspace.databinding.ActivityMainBinding
-import com.raywenderlich.android.uspace.ui.adapters.TabsAdapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.raywenderlich.android.uspace.repository.SpaceRepository
+import com.raywenderlich.android.uspace.repository.SpaceResult
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-/**
- * Main Screen
- */
-class MainActivity : AppCompatActivity() {
+class CapsuleViewModel @Inject constructor(
+    private val repository: SpaceRepository
+) : ViewModel() {
 
-  private lateinit var binding: ActivityMainBinding
+  private val _capsules = MutableLiveData<SpaceResult>()
+  val capsules: LiveData<SpaceResult> get() = _capsules
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    // Switch to AppTheme for displaying the activity
-    setTheme(R.style.AppTheme)
-
-    super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-
-    // Your code
-    val adapter = TabsAdapter(this)
-    binding.pager.adapter = adapter
-
-    TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
-      when (position) {
-        0 -> tab.text = getString(R.string.rockets_tab)
-        1 -> tab.text = getString(R.string.crew_tab)
-        2 -> tab.text = getString(R.string.dragons_tab)
-        3 -> tab.text = getString(R.string.capsules_tab)
+  fun getCapsules() {
+    viewModelScope.launch {
+      repository.getCapsules().collect {
+        _capsules.value = it
       }
-    }.attach()
-
+    }
   }
 }
