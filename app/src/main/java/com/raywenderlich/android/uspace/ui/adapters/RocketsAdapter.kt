@@ -14,7 +14,6 @@ class RocketsAdapter @Inject constructor(): RecyclerView.Adapter<RocketsAdapter.
 
   inner class RocketViewHolder(private val binding: ItemRocketBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(rocket: Rocket) {
-      binding.setVariable(BR.rocket, rocket)
     }
   }
 

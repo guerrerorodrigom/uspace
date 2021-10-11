@@ -14,7 +14,7 @@ class CapsuleAdapter @Inject constructor() : RecyclerView.Adapter<CapsuleAdapter
 
   inner class CapsuleViewHolder(private val binding: ItemCapsuleBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(capsule: Capsule) {
-      binding.setVariable(BR.capsule, capsule)
+
     }
   }
 

@@ -57,16 +57,13 @@ class RocketsFragment : Fragment() {
     viewModel.rockets.observe(viewLifecycleOwner) { result ->
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          binding?.loading = false
           viewModel.getRockets()
         }
         is SpaceResult.RocketResult -> {
-          binding?.loading = false
           adapter.addItems(result.rockets)
         }
       }
     }
-    binding?.loading = true
     viewModel.getRockets()
   }
 

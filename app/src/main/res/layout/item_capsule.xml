@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="capsule"
-            type="com.raywenderlich.android.uspace.ui.models.Capsule" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -18,7 +11,6 @@
 
         <ImageView
             android:id="@+id/capsule_image"
-            app:srcCompat="@drawable/rocket"
             android:layout_width="@dimen/item_image_size"
             android:layout_height="@dimen/item_image_size"
             android:scaleType="centerCrop"
@@ -31,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
-            android:text="@{capsule.serial}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintStart_toEndOf="@id/capsule_image"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
-            android:text="@{capsule.type}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintStart_toEndOf="@id/capsule_image"
             app:layout_constraintTop_toBottomOf="@id/capsule_name"
@@ -55,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
-            app:capitalizeFirst="@{capsule.status}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toEndOf="@id/capsule_image"
             app:layout_constraintTop_toBottomOf="@id/capsule_type"

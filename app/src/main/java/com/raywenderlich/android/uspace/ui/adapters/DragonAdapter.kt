@@ -14,7 +14,6 @@ class DragonAdapter @Inject constructor() : RecyclerView.Adapter<DragonAdapter.D
 
   inner class DragonViewHolder(private val binding: ItemDragonBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(dragon: Dragon) {
-      binding.setVariable(BR.dragon, dragon)
     }
   }
 

@@ -57,16 +57,13 @@ class DragonsFragment : Fragment() {
     viewModel.dragons.observe(viewLifecycleOwner) { result ->
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          binding?.loading = false
           viewModel.getDragons()
         }
         is SpaceResult.DragonResult -> {
-          binding?.loading = false
           adapter.addItems(result.dragons)
         }
       }
     }
-    binding?.loading = true
     viewModel.getDragons()
   }
 

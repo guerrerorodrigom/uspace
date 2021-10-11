@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="dragon"
-            type="com.raywenderlich.android.uspace.ui.models.Dragon" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -21,21 +14,18 @@
             android:layout_width="@dimen/item_image_size"
             android:layout_height="@dimen/item_image_size"
             android:scaleType="centerCrop"
-            app:imageUrl="@{dragon.images[0]}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:placeholder="@{@drawable/splash_background}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/dragon_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
-            android:textAppearance="@{@string/title_appearance}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toTopOf="parent"
-            app:text="@{dragon.name}"
             tools:text="dragon Name" />
 
         <TextView
@@ -45,7 +35,6 @@
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            app:date="@{dragon.firstFlightDate}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toBottomOf="@id/dragon_name"
             tools:text="2010-12-08" />
@@ -57,7 +46,6 @@
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            app:capitalizeFirst="@{dragon.type}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toBottomOf="@id/dragon_date"
             tools:text="Capsule" />

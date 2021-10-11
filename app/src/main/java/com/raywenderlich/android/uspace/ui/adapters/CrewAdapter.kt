@@ -14,7 +14,6 @@ class CrewAdapter @Inject constructor(): RecyclerView.Adapter<CrewAdapter.CrewVi
 
   inner class CrewViewHolder(private val binding: ItemCrewBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(crew: Crew) {
-      binding.setVariable(BR.crew, crew)
     }
   }
 
