@@ -57,13 +57,12 @@ class CapsulesFragment : Fragment() {
     }
 
     viewModel.capsules.observe(viewLifecycleOwner) { result ->
+      binding?.loading = false
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          binding?.loading = false
           viewModel.getCapsules()
         }
         is SpaceResult.CapsuleResult -> {
-          binding?.loading = false
           adapter.addItems(result.capsules)
         }
       }

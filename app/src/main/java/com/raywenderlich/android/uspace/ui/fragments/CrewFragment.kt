@@ -58,13 +58,12 @@ class CrewFragment : Fragment() {
     binding?.viewModel = viewModel
 
     viewModel.result.observe(viewLifecycleOwner) { result ->
+      viewModel.isLoading(false)
       when (result) {
         SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          viewModel.isLoading(false)
           viewModel.getCrew()
         }
         is SpaceResult.CrewResult -> {
-          viewModel.isLoading(false)
           adapter.addItems(result.crew)
         }
       }
