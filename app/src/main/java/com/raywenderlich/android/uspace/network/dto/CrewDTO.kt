@@ -8,5 +8,6 @@ data class CrewDTO(
     val image: String,
     @SerializedName("wikipedia")
     val externalLink: String,
-    val status: String
+    val status: String,
+    val launches: List<String>
 )

@@ -51,6 +51,6 @@ fun DragonDTO.toDragon() = Dragon(
     .toMeasurement(), externalLink, description
 )
 
-fun CrewDTO.toCrew() = Crew(name, agency, image, externalLink, status)
+fun CrewDTO.toCrew() = Crew(name, agency, image, externalLink, status, launches)
 
 fun CapsuleDTO.toCapsule() = Capsule(serial, status, type)

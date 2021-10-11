@@ -15,4 +15,5 @@
     <string name="spacex">SpaceX</string>
     <string name="jaxa">JAXA</string>
     <string name="esa">ESA</string>
+    <string name="launches"># of launches: %s</string>
 </resources>

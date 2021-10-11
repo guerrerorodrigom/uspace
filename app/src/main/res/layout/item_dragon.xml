@@ -44,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
-            android:text="@{dragon.firstFlightDate}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:date="@{dragon.firstFlightDate}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toBottomOf="@id/dragon_name"
             tools:text="2010-12-08" />
@@ -56,8 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
-            android:text="@{dragon.type}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            app:capitalizeFirst="@{dragon.type}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toBottomOf="@id/dragon_date"
             tools:text="Capsule" />

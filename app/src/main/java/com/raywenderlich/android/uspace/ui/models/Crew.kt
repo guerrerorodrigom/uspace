@@ -5,5 +5,6 @@ data class Crew(
     val agency: String,
     val image: String,
     val externalLink: String,
-    val status: String
+    val status: String,
+    val launches: List<String>
 )
