@@ -3,7 +3,6 @@ package com.raywenderlich.android.uspace.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.raywenderlich.android.uspace.BR
 import com.raywenderlich.android.uspace.databinding.ItemRocketBinding
 import com.raywenderlich.android.uspace.ui.models.Rocket
 import javax.inject.Inject
