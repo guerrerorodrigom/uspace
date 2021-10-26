@@ -48,21 +48,10 @@ class RocketsFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    binding?.apply {
-      rocketsList.layoutManager = LinearLayoutManager(requireContext())
-      rocketsList.adapter = adapter
-      rocketsList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-    }
+    setupList()
 
     viewModel.rockets.observe(viewLifecycleOwner) { result ->
-      when (result) {
-        SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          viewModel.getRockets()
-        }
-        is SpaceResult.RocketResult -> {
-          adapter.addItems(result.rockets)
-        }
-      }
+      handleResult(result)
     }
     viewModel.getRockets()
   }
@@ -70,5 +59,24 @@ class RocketsFragment : Fragment() {
   override fun onDestroyView() {
     super.onDestroyView()
     binding = null
+  }
+
+  private fun setupList() {
+    binding?.apply {
+      rocketsList.layoutManager = LinearLayoutManager(requireContext())
+      rocketsList.adapter = adapter
+      rocketsList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+    }
+  }
+
+  private fun handleResult(result: SpaceResult) {
+    when (result) {
+      SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
+        viewModel.getRockets()
+      }
+      is SpaceResult.RocketResult -> {
+        adapter.addItems(result.rockets)
+      }
+    }
   }
 }
