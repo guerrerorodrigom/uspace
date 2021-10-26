@@ -12,6 +12,7 @@
         android:layout_width="@dimen/item_image_size"
         android:layout_height="@dimen/item_image_size"
         android:scaleType="centerCrop"
+        android:src="@drawable/rocket"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
