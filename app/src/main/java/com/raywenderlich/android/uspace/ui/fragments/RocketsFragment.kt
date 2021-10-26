@@ -51,8 +51,10 @@ class RocketsFragment : Fragment() {
     setupList()
 
     viewModel.rockets.observe(viewLifecycleOwner) { result ->
+      binding?.loading = false
       handleResult(result)
     }
+    binding?.loading = true
     viewModel.getRockets()
   }
 

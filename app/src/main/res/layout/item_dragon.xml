@@ -21,6 +21,8 @@
             android:layout_width="@dimen/item_image_size"
             android:layout_height="@dimen/item_image_size"
             android:scaleType="centerCrop"
+            app:imageUrl="@{dragon.images[0]}"
+            app:placeholder="@{@drawable/splash_background}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:text="@{dragon.name}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="dragon Name" />
@@ -42,9 +45,9 @@
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:date="@{dragon.firstFlightDate}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
-            app:layout_constraintTop_toBottomOf="@id/dragon_name"
-            tools:text="2010-12-08" />
+            app:layout_constraintTop_toBottomOf="@id/dragon_name" />
 
         <TextView
             android:id="@+id/dragon_type"
@@ -53,8 +56,8 @@
             android:layout_marginStart="@dimen/text_margin"
             android:paddingTop="@dimen/text_padding"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            app:capitalizeFirst="@{dragon.type}"
             app:layout_constraintStart_toEndOf="@id/dragon_image"
-            app:layout_constraintTop_toBottomOf="@id/dragon_date"
-            tools:text="Capsule" />
+            app:layout_constraintTop_toBottomOf="@id/dragon_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

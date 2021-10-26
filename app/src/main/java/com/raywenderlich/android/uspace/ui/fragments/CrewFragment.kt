@@ -48,6 +48,8 @@ class CrewFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+    binding?.viewModel = viewModel
+
     setupList()
 
     viewModel.result.observe(viewLifecycleOwner) { result ->
