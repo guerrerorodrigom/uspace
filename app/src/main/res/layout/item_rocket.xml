@@ -8,7 +8,7 @@
     android:padding="@dimen/card_padding">
 
     <ImageView
-        android:id="@+id/capsule_image"
+        android:id="@+id/rocket_image"
         android:layout_width="@dimen/item_image_size"
         android:layout_height="@dimen/item_image_size"
         android:scaleType="centerCrop"
@@ -17,31 +17,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/capsule_name"
+        android:id="@+id/rocket_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
-        app:layout_constraintStart_toEndOf="@id/capsule_image"
+        app:layout_constraintStart_toEndOf="@id/rocket_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Rocket Name" />
 
     <TextView
-        android:id="@+id/capsule_type"
+        android:id="@+id/rocket_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
         android:paddingTop="@dimen/text_padding"
-        app:layout_constraintStart_toEndOf="@id/capsule_image"
-        app:layout_constraintTop_toBottomOf="@id/capsule_name"
+        app:layout_constraintStart_toEndOf="@id/rocket_image"
+        app:layout_constraintTop_toBottomOf="@id/rocket_name"
         tools:text="22.25 meters" />
 
     <TextView
-        android:id="@+id/capsule_status"
+        android:id="@+id/rocket_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
         android:paddingTop="@dimen/text_padding"
-        app:layout_constraintStart_toEndOf="@id/capsule_image"
-        app:layout_constraintTop_toBottomOf="@id/capsule_type"
+        app:layout_constraintStart_toEndOf="@id/rocket_image"
+        app:layout_constraintTop_toBottomOf="@id/rocket_type"
         tools:text="30,000 kg" />
 </androidx.constraintlayout.widget.ConstraintLayout>
