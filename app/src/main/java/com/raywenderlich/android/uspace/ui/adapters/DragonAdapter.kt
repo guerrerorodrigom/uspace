@@ -3,6 +3,7 @@ package com.raywenderlich.android.uspace.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.raywenderlich.android.uspace.BR
 import com.raywenderlich.android.uspace.databinding.ItemDragonBinding
 import com.raywenderlich.android.uspace.ui.models.Dragon
 import javax.inject.Inject
@@ -13,6 +14,7 @@ class DragonAdapter @Inject constructor() : RecyclerView.Adapter<DragonAdapter.D
 
   inner class DragonViewHolder(private val binding: ItemDragonBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(dragon: Dragon) {
+      binding.setVariable(BR.dragon, dragon)
     }
   }
 
