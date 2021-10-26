@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="capsule"
+            name="rocket"
             type="com.raywenderlich.android.uspace.ui.models.Rocket" />
     </data>
 
