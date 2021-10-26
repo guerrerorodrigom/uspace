@@ -48,33 +48,39 @@ class CrewFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    binding?.apply {
-      crewList.layoutManager = LinearLayoutManager(requireContext())
-      crewList.adapter = adapter
-      crewList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-    }
+    setupList()
 
     viewModel.result.observe(viewLifecycleOwner) { result ->
-      viewModel.isLoading(false)
-      when (result) {
-        SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
-          viewModel.getCrew()
-        }
-        is SpaceResult.CrewResult -> {
-          adapter.addItems(result.crew)
-        }
-      }
+      handleResult(result)
     }
 
     viewModel.crewAgency.observe(viewLifecycleOwner) {
       adapter.addItems(viewModel.getFilteredCrew())
     }
-    viewModel.isLoading(true)
     viewModel.getCrew()
   }
 
   override fun onDestroyView() {
     super.onDestroyView()
     binding = null
+  }
+
+  private fun setupList() {
+    binding?.apply {
+      crewList.layoutManager = LinearLayoutManager(requireContext())
+      crewList.adapter = adapter
+      crewList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+    }
+  }
+
+  private fun handleResult(result: SpaceResult) {
+    when (result) {
+      SpaceResult.Error -> binding?.root.showSnackbar(R.string.error_loading_data, R.string.try_again) {
+        viewModel.getCrew()
+      }
+      is SpaceResult.CrewResult -> {
+        adapter.addItems(result.crew)
+      }
+    }
   }
 }

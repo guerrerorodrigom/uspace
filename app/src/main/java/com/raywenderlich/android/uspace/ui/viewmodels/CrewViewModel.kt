@@ -38,7 +38,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raywenderlich.android.uspace.R
 import com.raywenderlich.android.uspace.repository.SpaceRepository
 import com.raywenderlich.android.uspace.repository.SpaceResult
 import com.raywenderlich.android.uspace.ui.models.Crew
@@ -55,9 +54,6 @@ class CrewViewModel @Inject constructor(
   private val _result = MutableLiveData<SpaceResult>()
   val result: LiveData<SpaceResult> get() = _result
 
-  private val _isLoading = MutableLiveData<Boolean>()
-  val isLoading: LiveData<Boolean> get() = _isLoading
-
   val crewAgency: MutableLiveData<CrewAgency> = MutableLiveData()
 
   fun getCrew() {
@@ -69,10 +65,6 @@ class CrewViewModel @Inject constructor(
         _result.value = it
       }
     }
-  }
-
-  fun isLoading(isLoading: Boolean) {
-    _isLoading.value = isLoading
   }
 
   fun getFilteredCrew() = crew.filter { it.agency.lowercase() == crewAgency.value?.agency }
